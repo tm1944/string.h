@@ -1,9 +1,16 @@
 #ifndef STRING_H
 #define STRING_H
 
+#include <stddef.h>
 
 // Return len of string using '\0' terminator
-int str_len(char* s);
+size_t str_len(const char* s);
 
+// String Copy 
+// points new pointer to that place
+void str_cpy(char* dest,const char* source);
+
+// String concatenate
+void str_cat(char* dest, const char* source);
 
 #endif

@@ -1,11 +1,24 @@
 #include "string.h"
 
-int str_len(char* s) {
-	int count = 0;
-	char char_cmp = *s;
-	while (char_cmp != '\0') {
+size_t str_len(const char* s) {
+	if ( s == nullptr ){
+		return 0;
+	}
+
+	size_t count = 0;
+	while ( *(s + count) != '\0') {
 		count++;
-		char_cmp = *(s + count);
 	}
 	return count;
+}
+
+
+void str_cpy(char* d,const char* s) {
+	size_t count = 0;
+	while (*(s + count) != '\0') {
+		*d = *(s + count);
+		count++;
+		d++;
+	}
+	*d = '\0'; // Null Terminator @ last index
 }
