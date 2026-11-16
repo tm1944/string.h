@@ -1,5 +1,7 @@
 #include <stdio.h>
-#include "string.h"
+
+#include <string.h>
+#include "my_string.h"
 
 int main(void)
 {
@@ -28,7 +30,7 @@ int main(void)
 
 	result = str_cmp(str1, str3);
 	printf("strcmp(str1, str3) = %d\n", result);
-	*/
+
 	char str[] = "Hello world";
 
 	char *p = str_chr(str, 'e');
@@ -36,5 +38,47 @@ int main(void)
 	printf("%c\n", *p);		  // e
 	printf("%s\n", p);		  // ello world
 	printf("%td\n", p - str); // 1 (index)
+	*/
+	char *tests[][2] = {
+		{"Hello world", "world"},  // Middle
+		{"Hello world", "Hello"},  // Beginning
+		{"Hello world", "world!"}, // Not found
+		{"banana", "ana"},		   // Multiple matches
+		{"aaaaa", "aaa"},		   // Repeated characters
+		{"abcdef", "abcdef"},	   // Exact match
+		{"abcdef", ""},			   // Empty substring
+		{"", "abc"},			   // Empty string
+		{"", ""},				   // Both empty
+		{"abc", "abcd"},		   // Substring longer than string
+		{"abcabcabc", "abc"},	   // Multiple occurrences
+		{"aabaac", "aac"},		   // Partial match then restart
+	};
+
+	int n = sizeof(tests) / sizeof(tests[0]);
+
+	for (int i = 0; i < n; i++)
+	{
+		const char *str = tests[i][0];
+		const char *sub = tests[i][1];
+
+		char *result = str_str(str, sub);
+		char *expected = strstr(str, sub);
+
+		printf("Test %d: ", i + 1);
+
+		if ((result == NULL && expected == NULL) ||
+			(result != NULL && expected != NULL &&
+			 result - str == expected - str))
+		{
+			printf("PASS\n");
+		}
+		else
+		{
+			printf("FAIL (expected index %td, got %td)\n",
+				   expected ? expected - str : -1,
+				   result ? result - str : -1);
+		}
+	}
+
 	return 0;
 }

@@ -1,5 +1,5 @@
-#include "string.h"
 #include <stdio.h>
+#include "my_string.h"
 size_t str_len(const char *s)
 {
 	if (s == NULL)
@@ -80,14 +80,58 @@ int str_cmp(const char *str1, const char *str2)
 
 char *str_chr(const char *str, int ch)
 {
-	char *s = str;
+	const char *s = str;
 	while (*s != '\0')
 	{
 		if (*s == ch)
 		{
-			return s;
+			return (char *)s;
 		}
 		s++;
 	}
 	return NULL;
+}
+
+char *str_str(const char *str, const char *sub_str)
+{
+	if (str_len(sub_str) == 0)
+	{
+		return (char *)str;
+	}
+	// increament *str until *str == *sub_str (first char are the same)
+	// then we do a sliding window technique
+	while (*str != '\0')
+	{
+		// if *str is starter of *sub_str
+		// make 2 pointers to check if they are the same
+		if (*str == *sub_str)
+		{
+
+			size_t sub_str_len = str_len(sub_str);
+			size_t cnt = 0;
+
+			const char *s = str;
+			const char *ss = sub_str;
+
+			while (cnt < sub_str_len)
+			{
+				if (*s != *ss)
+				{
+					break;
+				}
+
+				s++;
+				ss++;
+
+				cnt++;
+			}
+			if (cnt == sub_str_len)
+			{
+				return (char *)str;
+			}
+		}
+		str++;
+	}
+
+	return NULL; // substring not in string
 }

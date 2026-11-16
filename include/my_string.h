@@ -1,5 +1,5 @@
-#ifndef STRING_H
-#define STRING_H
+#ifndef MY_STRING_H
+#define MY_STRING_H
 
 #include <stddef.h> //size_t
 
@@ -19,5 +19,8 @@ int str_cmp(const char *str1, const char *str2);
 
 // return first occurance of char c in string
 char *str_chr(const char *str, int c);
+
+// return first occurance of substring in string
+char *str_str(const char *str, const char *sub_str);
 
 #endif
