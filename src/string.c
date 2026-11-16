@@ -77,3 +77,17 @@ int str_cmp(const char *str1, const char *str2)
 	}
 	return 0;
 }
+
+char *str_chr(const char *str, int ch)
+{
+	char *s = str;
+	while (*s != '\0')
+	{
+		if (*s == ch)
+		{
+			return s;
+		}
+		s++;
+	}
+	return NULL;
+}

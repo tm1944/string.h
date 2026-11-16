@@ -17,4 +17,7 @@ void str_cat(char *dest, const char *source);
 // returns 0 if equal 1 if not
 int str_cmp(const char *str1, const char *str2);
 
+// return first occurance of char c in string
+char *str_chr(const char *str, int c);
+
 #endif
