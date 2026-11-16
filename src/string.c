@@ -48,6 +48,25 @@ void str_cat(char *dest, const char *src)
 	}
 	*d = '\0'; // end with null terminator
 
-	d = dest2; //point d back to start of dest2;
+	d = dest2; // point d back to start of dest2;
 	str_cpy(dest, d);
+}
+
+int str_cmp(const char *str1, const char *str2)
+{
+	size_t string_len = str_len(str1); // saves a few calls
+	if (string_len != str_len(str2))
+	{
+		return 1;
+	}
+
+	// same len so i can just use the lenght of 1
+	for (size_t i = 0; i <= str_len(str1); ++i, ++str1, ++str2)
+	{
+		if (*str1 != *str2)
+		{
+			return 1;
+		}
+	}
+	return 0;
 }
