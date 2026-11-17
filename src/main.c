@@ -38,7 +38,7 @@ int main(void)
 	printf("%c\n", *p);		  // e
 	printf("%s\n", p);		  // ello world
 	printf("%td\n", p - str); // 1 (index)
-	*/
+
 	char *tests[][2] = {
 		{"Hello world", "world"},  // Middle
 		{"Hello world", "Hello"},  // Beginning
@@ -79,6 +79,9 @@ int main(void)
 				   result ? result - str : -1);
 		}
 	}
-
+	*/
+	char source[] = "once upon a time..", dest[4];
+	mem_cpy(dest, source, sizeof dest);
+	printf("%s,%lu", dest, sizeof dest);
 	return 0;
 }

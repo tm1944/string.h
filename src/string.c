@@ -135,3 +135,21 @@ char *str_str(const char *str, const char *sub_str)
 
 	return NULL; // substring not in string
 }
+
+void *mem_cpy(void *restrict dest, void *restrict src, size_t n)
+{
+	// using unsigned char* because void ptr can't be dereferenced
+	//
+	unsigned char *d = dest;
+	unsigned char *s = src;
+
+	size_t cnt = 0;
+	while (cnt < n)
+	{
+		*d = *s;
+		d++;
+		s++;
+		cnt++;
+	}
+	return dest;
+}

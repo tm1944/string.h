@@ -23,4 +23,10 @@ char *str_chr(const char *str, int c);
 // return first occurance of substring in string
 char *str_str(const char *str, const char *sub_str);
 
+// copy n bytes from one memory address to another
+void *mem_cpy(void *restrict dest, void *restrict src, size_t n);
+
+void *mem_move(void *dest, void *src, size_t n);
+
+
 #endif
